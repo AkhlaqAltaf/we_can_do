@@ -1,0 +1,65 @@
+
+
+{% extends 'base.html' %}
+
+
+<head>
+    <script>
+        $(document).ready(function() {
+            $('#quiz-form').submit(function(e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function(data) {
+                        $('#result').html(data);
+                        $('#result').show();
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+{% block body %}
+
+    <div class="container">
+        <h1>MCQ Quiz</h1>
+        <form id="quiz-form" action = 'quiz/submit/' , method = "POST">
+            {% csrf_token %}
+            {% for mcq in mcqs %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ mcq.question }}</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{ mcq.id }}" value="{{ mcq.option1 }}">
+                        <label class="form-check-label" for="{{ mcq.id }}">{{ mcq.option1 }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{ mcq.id }}" value="{{ mcq.option2 }}">
+                        <label class="form-check-label" for="{{ mcq.id }}">{{ mcq.option2 }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{ mcq.id }}" value="{{ mcq.option3 }}">
+                        <label class="form-check-label" for="{{ mcq.id }}">{{ mcq.option3 }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{ mcq.id }}" value="{{ mcq.option4 }}">
+                        <label class="form-check-label" for="{{ mcq.id }}">{{ mcq.option4 }}</label>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div id="result" style="display: none;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  
+
+{% endblock body %}
+
+

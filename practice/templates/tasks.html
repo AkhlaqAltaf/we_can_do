@@ -1,0 +1,74 @@
+
+
+{% extends 'base.html' %}
+
+
+{% block title %}
+Task
+{% endblock title %}
+
+
+{% block body %}
+
+<head>
+  <style>
+    .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin: 20px;
+    }
+  
+    .card-header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  
+    .card-footer {
+      text-align: center;
+    }
+  
+    .download-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
+  
+  
+  </head>
+  
+<div class="card" style="width: 18rem;">
+  <div class="card">
+    <div class="card-header">
+      <h3>{{name}}</h3>
+    </div>
+    <div class="card-body">
+      <p>Language:{{language}}]</p>
+      <p>Total Points: {{points}}</p>
+    </div>
+    <div class="card-footer">
+      <a href="[DOWNLOAD_LINK]" class="download-button">Download</a>
+    </div>
+  </div>
+  
+</div>
+
+
+
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
